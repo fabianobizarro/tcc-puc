@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>LojaDropS.Dominio</AssemblyName>
+    <RootNamespace>LojaDropS.Dominio</RootNamespace>
+  </PropertyGroup>
+
+</Project>
