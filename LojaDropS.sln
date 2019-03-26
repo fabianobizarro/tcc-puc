@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{62CF5225-62FD-48C9-A7A3-111B62AAD120}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Dominio", "3 - Dominio", "{62CF5225-62FD-48C9-A7A3-111B62AAD120}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicos", "Servicos", "{BC81106A-B528-4F73-B2FD-ABC76695BEA6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Servicos", "2 - Servicos", "{BC81106A-B528-4F73-B2FD-ABC76695BEA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Servicos.Vendas", "src\LojaDropS.Servicos.Vendas\LojaDropS.Servicos.Vendas.csproj", "{BA9756A4-B142-4687-8555-C0F8DAB8A84B}"
 EndProject
@@ -13,17 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Servicos.Autentic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Dominio", "src\LojaDropS.Dominio\LojaDropS.Dominio.csproj", "{ED59C070-26CE-413E-9A4D-94E687A10C13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDropS.Repositorios", "src\LojaDropS.Repositorios\LojaDropS.Repositorios.csproj", "{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDropS.Aplicacao", "src\LojaDropS.Aplicacao\LojaDropS.Aplicacao.csproj", "{403D57B4-ED33-4C40-B522-17E0A8B605B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Aplicacao", "src\LojaDropS.Aplicacao\LojaDropS.Aplicacao.csproj", "{403D57B4-ED33-4C40-B522-17E0A8B605B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{AB117976-CB2F-4D12-8E48-5893E260D86A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{2164DF21-2221-49A5-9D1F-06D3E183E7C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Aplicacao", "1 - Aplicacao", "{2164DF21-2221-49A5-9D1F-06D3E183E7C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositorios", "Repositorios", "{3D24B636-D6DE-443F-BFFD-10E30414C4C2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Repositorios", "4 - Repositorios", "{3D24B636-D6DE-443F-BFFD-10E30414C4C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDropS.Servicos.Vendas.Tests", "src\Tests\LojaDropS.Servicos.Vendas.Tests\LojaDropS.Servicos.Vendas.Tests.csproj", "{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Servicos.Vendas.Tests", "src\Tests\LojaDropS.Servicos.Vendas.Tests\LojaDropS.Servicos.Vendas.Tests.csproj", "{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaDropS.Infra", "src\LojaDropS.Infra\LojaDropS.Infra.csproj", "{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +43,6 @@ Global
 		{ED59C070-26CE-413E-9A4D-94E687A10C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED59C070-26CE-413E-9A4D-94E687A10C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED59C070-26CE-413E-9A4D-94E687A10C13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{403D57B4-ED33-4C40-B522-17E0A8B605B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{403D57B4-ED33-4C40-B522-17E0A8B605B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403D57B4-ED33-4C40-B522-17E0A8B605B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +51,10 @@ Global
 		{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,9 +63,9 @@ Global
 		{BA9756A4-B142-4687-8555-C0F8DAB8A84B} = {BC81106A-B528-4F73-B2FD-ABC76695BEA6}
 		{AFC3F502-00E3-419C-8589-45EB0B7E5A4A} = {BC81106A-B528-4F73-B2FD-ABC76695BEA6}
 		{ED59C070-26CE-413E-9A4D-94E687A10C13} = {62CF5225-62FD-48C9-A7A3-111B62AAD120}
-		{CF9BC218-6F9A-484F-AED2-C1EAED62A0A4} = {3D24B636-D6DE-443F-BFFD-10E30414C4C2}
 		{403D57B4-ED33-4C40-B522-17E0A8B605B5} = {2164DF21-2221-49A5-9D1F-06D3E183E7C4}
 		{D4C82AF0-E2B8-422E-937C-4EACBFB5E80C} = {AB117976-CB2F-4D12-8E48-5893E260D86A}
+		{EDABDFE4-C7BA-496A-BEDA-3266E1239EB9} = {3D24B636-D6DE-443F-BFFD-10E30414C4C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90EE8F61-18F7-43B3-BE61-AF65A00DD295}

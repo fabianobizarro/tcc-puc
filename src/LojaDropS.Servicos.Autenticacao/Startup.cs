@@ -26,6 +26,13 @@ namespace LojaDropS.Servicos.Autenticacao
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApis())
+                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +46,8 @@ namespace LojaDropS.Servicos.Autenticacao
             {
                 app.UseHsts();
             }
+
+            app.UseIdentityServer();
 
             app.UseHttpsRedirection();
             app.UseMvc();

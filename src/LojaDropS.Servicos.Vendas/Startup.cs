@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore.InMemory;
+using Microsoft.EntityFrameworkCore;
+using LojaDropS.Infra.Interfaces;
+using LojaDropS.Infra.Stores;
+using LojaDropS.Infra;
 
 namespace LojaDropS.Servicos.Vendas
 {
@@ -26,6 +31,14 @@ namespace LojaDropS.Servicos.Vendas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("poctccpuc");
+            });
+
+            services.AddTransient<IAppDbContext, AppDbContext>();
+            services.AddTransient<IProdutoStore, ProdutoStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
