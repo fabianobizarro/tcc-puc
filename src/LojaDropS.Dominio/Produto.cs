@@ -11,12 +11,12 @@ namespace LojaDropS.Dominio
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
-        public string FornecedorId { get; set; }
+        public Guid FornecedorId { get; set; }
         public Guid CategoriaId { get; set; }
 
         public IDictionary<string, string> CaracteristicasToDict()
         {
-            return Caracteristicas.ToDictionary(
+            return Caracteristicas?.ToDictionary(
                 key => key.Nome,
                 value => value.Valor
             );

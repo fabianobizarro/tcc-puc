@@ -1,5 +1,6 @@
 ﻿using LojaDropS.Dominio;
 using LojaDropS.Infra.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace LojaDropS.Infra.Stores
             _db = db;
         }
 
-        public IQueryable<Produto> Produtos => _db.Produtos;
+        public IQueryable<Produto> Produtos => _db.Produtos
+            .Include(p => p.Caracteristicas)
+            .Include(p => p.Categoria)
+            .Include(P => P.Fornecedor);
     }
 }

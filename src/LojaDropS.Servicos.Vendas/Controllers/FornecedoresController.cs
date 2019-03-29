@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaDropS.Infra.Interfaces;
+using LojaDropS.Servicos.Vendas.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,9 @@ namespace LojaDropS.Servicos.Vendas.Controllers
             var fornecedores = await _store.Fornecedores
                 .ToListAsync();
 
-            return Ok(fornecedores);
+            var vm = fornecedores.Select(DisplayFornecedorViewModel.Map);
+
+            return Ok(vm);
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore.InMemory;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using LojaDropS.Infra.Interfaces;
 using LojaDropS.Infra.Stores;
@@ -34,16 +35,22 @@ namespace LojaDropS.Servicos.Vendas
 
             services.AddDbContext<AppDbContext>(options =>
             {
+                options.EnableSensitiveDataLogging(true);
                 options.UseInMemoryDatabase("poctccpuc");
+                //options.UseSqlite(@"Data Source=mydb.db");
             });
 
             services.AddTransient<IAppDbContext, AppDbContext>();
             services.AddTransient<IProdutoStore, ProdutoStore>();
+            services.AddTransient<ICategoriaStore, CategoriaStore>();
+            services.AddTransient<IFornecedoreStore, FornecedorStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+            InitializeDb(serviceProvider);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -56,5 +63,17 @@ namespace LojaDropS.Servicos.Vendas
             app.UseHttpsRedirection();
             app.UseMvc();
         }
+
+        public void InitializeDb(IServiceProvider serviceProvider)
+        {
+            Console.WriteLine("Initializing Db");
+            using (var context = serviceProvider.GetService<AppDbContext>())
+            {
+                //context.Database.Migrate();
+                DB.MoqDb(context);
+            }
+            Console.WriteLine("Finished");
+        }
+
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaDropS.Infra.Interfaces;
+using LojaDropS.Servicos.Vendas.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaDropS.Servicos.Vendas.Controllers
 {
@@ -17,6 +19,15 @@ namespace LojaDropS.Servicos.Vendas.Controllers
         public CategoriasController(ICategoriaStore store)
         {
             _store = store;
+        }
+
+        public async Task<IActionResult> Get()
+        {
+            var categorias = await _store.Categorias.ToListAsync();
+
+            var vm = categorias.Select(DisplayCategoriaViewModel.Map);
+
+            return Ok(vm);
         }
     }
 }
