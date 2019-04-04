@@ -34,25 +34,17 @@ namespace LojaDropS.Servicos.Vendas.Controllers
 
             if (!string.IsNullOrEmpty(q))
             {
-                produtos = produtos.Where(p => p.Nome.Contains(q) || p.Descricao.Contains(q));
+                q = q.ToLower();
+                produtos = produtos.Where(p => p.Nome.ToLower().Contains(q) || p.Descricao.ToLower().Contains(q));
             }
 
             var skip = page == 1 ? 0 : page * display;
 
             produtos = produtos.Skip(skip).Take(display);
 
-            var list = await produtos.ToListAsync();
+            var list = await Task.FromResult(produtos.ToList());
 
-            var vm = list.Select(p => new
-            {
-                p.Id,
-                p.Nome,
-                p.Descricao,
-                p.Valor,
-                fornecedor = p.Fornecedor?.Nome,
-                categoria = p.Categoria?.Nome,
-                Caracteristicas = p.CaracteristicasToDict()
-            });
+            var vm = list.Select(DisplayProdutoViewModel.Map);
 
             return Ok(vm);
         }
@@ -71,7 +63,7 @@ namespace LojaDropS.Servicos.Vendas.Controllers
                         CategoriaId = new Guid(model.CategoriaId),
                         FornecedorId = new Guid(model.FornecedorId),
                         Valor = model.Valor,
-                        Caracteristicas = model.Caracteristicas.Select(p => new Caracteristica
+                        Caracteristicas = model?.Caracteristicas.Select(p => new Caracteristica
                         {
                             Nome = p.Key,
                             Valor = p.Value,
@@ -80,30 +72,19 @@ namespace LojaDropS.Servicos.Vendas.Controllers
 
                     var result = await _store.AddAsync(produto);
 
-                    var vm = new
-                    {
-                        produto.Id,
-                        produto.Nome,
-                        produto.Descricao,
-                        produto.Valor,
-                        fornecedor = produto.Fornecedor?.Nome,
-                        categoria = produto.Categoria?.Nome,
-                        Caracteristicas = produto.CaracteristicasToDict()
-                    };
+                    var vm = DisplayProdutoViewModel.Map(result);
 
                     return Ok(vm);
                 }
                 catch (Exception ex)
                 {
-                    // erro
-                    return new JsonResult(ex.Message);
+                    return Error(ex.Message);
                 }
             }
             else
             {
                 return BadRequest(ModelState);
             }
-
         }
 
     }

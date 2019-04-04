@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LojaDropS.Servicos.Vendas.Results;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,14 @@ namespace LojaDropS.Servicos.Vendas.Controllers
 {
     public class AppControllerBase : ControllerBase
     {
-        public IActionResult Error()
+        public ServerErrorResult Error()
         {
-            return new StatusCodeResult(500);
+            return new ServerErrorResult();
+        }
+
+        public ServerErrorObjectResult Error(object value)
+        {
+            return new ServerErrorObjectResult(value);
         }
     }
 }
