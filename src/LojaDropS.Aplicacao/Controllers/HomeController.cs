@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LojaDropS.Aplicacao.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaDropS.Aplicacao.Controllers
 {
@@ -15,23 +18,21 @@ namespace LojaDropS.Aplicacao.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [Authorize]
+        public IActionResult Claims()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Logout()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Privacy()
+        public IActionResult AcessoNegado([FromQuery]string returnUrl = null)
         {
-            return View();
+            return View(model: returnUrl);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
