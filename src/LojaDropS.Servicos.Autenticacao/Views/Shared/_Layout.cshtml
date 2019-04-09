@@ -12,45 +12,57 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IdentityServer4</title>
+    <title>SSO - LojaDropS</title>
     <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="~/">
-                    <span class="navbar-brand">
-                        <img src="~/icon.png" class="icon-banner">
-                        IdentityServer4
-                    </span>
-                </a>
-            </div>
-            
-            <ul class="nav navbar-nav">
-                <li><a asp-action="Index" asp-controller="Claims">Claims</a></li>
-                @if (!string.IsNullOrWhiteSpace(name))
-                {
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-action="Logout" asp-controller="Account">Logout</a></li>
-                        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-2">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">Loja DropS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                }
-            </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Index" asp-controller="Claims">Claims</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                        </li>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="navBarUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @name <b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navBarUser">
+                                <div class="dropdown-item"><a asp-action="Logout" asp-controller="Account">Logout</a></div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+
+            </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+
+    <div class="container body-content mt-2">
         @RenderBody()
     </div>
     <script src="~/lib/jquery/jquery.js"></script>
