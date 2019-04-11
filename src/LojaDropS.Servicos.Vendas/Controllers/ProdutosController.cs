@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LojaDropS.Dominio;
 using LojaDropS.Infra.Interfaces;
 using LojaDropS.Servicos.Vendas.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace LojaDropS.Servicos.Vendas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AppPolicy")]
     public class ProdutosController : AppControllerBase
     {
         private readonly IProdutoStore _store;

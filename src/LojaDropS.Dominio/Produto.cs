@@ -13,6 +13,7 @@ namespace LojaDropS.Dominio
         public decimal Valor { get; set; }
         public Guid FornecedorId { get; set; }
         public Guid CategoriaId { get; set; }
+        public string UrlImagem { get; set; }
 
         public IDictionary<string, string> CaracteristicasToDict()
         {

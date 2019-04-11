@@ -1,0 +1,78 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <label>Pesquisar produtos</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [(ngModel)]="pesquisa" />
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="pesquisar()">
+              Pesquisar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div class="accordion d-block d-sm-block d-md-block d-lg-none ">
+  <button class="btn btn-link" (click)="toggleShowAccordion()">
+    Categorias
+  </button>
+  <div class="card mb-4">
+    <div id="collapseOne" class="collapse" [class.show]="showAccordion" aria-labelledby="headingOne"
+      data-parent="#accordionExample">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" *ngFor="let categoria of categorias">
+          {{categoria.nome}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="show && !loading">
+  <div class="col-md-2 d-lg-block d-sm-none d-none">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action">
+        <strong>Categorias</strong>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action" *ngFor="let categoria of categorias">
+        {{categoria.nome}}
+      </a>
+    </div>
+  </div>
+  <div class="col-12 col-sm">
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-2" *ngFor="let produto of listaProdutos">
+        <div class="card">
+          <img src="{{produto.urlImagem}}" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title"> {{produto.nome}} </h5>
+            <p class="card-text"> {{produto.descricao}} </p>
+            <div class="d-flex justify-content-between">
+              <p class="card-text"> <strong> R$ {{produto.valor | number:'1.2'}} </strong> </p>
+              <button class="btn btn-success btn-sm">
+                Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col justify-content-center">
+        <button class="btn btn-link" (click)="carregarMais()">
+          Carregar mais
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

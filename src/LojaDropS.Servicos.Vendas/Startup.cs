@@ -44,6 +44,16 @@ namespace LojaDropS.Servicos.Vendas
             services.AddTransient<IProdutoStore, ProdutoStore>();
             services.AddTransient<ICategoriaStore, CategoriaStore>();
             services.AddTransient<IFornecedoreStore, FornecedorStore>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AppPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

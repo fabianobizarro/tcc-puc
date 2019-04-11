@@ -44,6 +44,7 @@ namespace LojaDropS.Servicos.Vendas
             fornecedor1.Produtos = Builder<Produto>.CreateListOfSize(20)
                                     .All()
                                     .Do(p => p.Categoria = Random.Int() % 2 == 0 ? categoria1 : categoria2)
+                                    .Do(p => p.UrlImagem = "https://via.placeholder.com/250x150")
                                     .Do(p => p.Caracteristicas = GetRandomCaracteristicas())
                                     .Build();
 
@@ -52,6 +53,7 @@ namespace LojaDropS.Servicos.Vendas
                                     .All()
                                     .Do(p => p.Categoria = Random.Int() % 2 == 0 ? categoria1 : categoria2)
                                     .Do(p => p.Caracteristicas = GetRandomCaracteristicas())
+                                    .Do(p => p.UrlImagem = "https://via.placeholder.com/250x150")
                                     .Build();
 
             return new List<Fornecedor>

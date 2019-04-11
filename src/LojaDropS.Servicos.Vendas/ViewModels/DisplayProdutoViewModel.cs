@@ -15,6 +15,9 @@ namespace LojaDropS.Servicos.Vendas.ViewModels
         public string FornecedorId { get; set; }
         public string CategoriaId { get; set; }
         public virtual IDictionary<string, string> Caracteristicas { get; set; }
+        public string Fornecedor { get; private set; }
+        public string Categoria { get; private set; }
+        public string UrlImagem { get; set; }
 
         public static DisplayProdutoViewModel Map(Produto produto)
         {
@@ -28,8 +31,11 @@ namespace LojaDropS.Servicos.Vendas.ViewModels
                 Descricao = produto.Descricao,
                 Valor = produto.Valor,
                 FornecedorId = produto.FornecedorId.ToString(),
+                Fornecedor = produto.Fornecedor?.Nome,
                 CategoriaId = produto.CategoriaId.ToString(),
-                Caracteristicas = produto.CaracteristicasToDict()
+                Categoria = produto.Categoria?.Nome,
+                Caracteristicas = produto.CaracteristicasToDict(),
+                UrlImagem = produto.UrlImagem
             };
         }
 
