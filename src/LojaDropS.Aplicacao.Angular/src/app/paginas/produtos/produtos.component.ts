@@ -36,7 +36,7 @@ export class ProdutosComponent implements OnInit {
       .subscribe(res => {
         this.categorias = res;
       }, err => {
-        console.log(err)
+        console.error(err)
       });
   }
 
@@ -49,7 +49,7 @@ export class ProdutosComponent implements OnInit {
         this.show = true;
         this.listaProdutos = res;
       }, err => {
-        console.log(err)
+        console.error(err)
       })
       .add(() => this.loading = false);
   }
@@ -64,7 +64,7 @@ export class ProdutosComponent implements OnInit {
           ...res
         ];
       }, err => {
-        console.log(err)
+        console.error(err)
       });
   }
 

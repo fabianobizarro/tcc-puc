@@ -1,0 +1,20 @@
+<h3>Minha Conta</h3>
+
+<div class="row">
+  <div class="col">
+
+    <dl>
+      <dt>Id</dt>
+      <dd> {{usuario.sub}} </dd>
+      <dt>Nome</dt>
+      <dd> {{usuario.name}} </dd>
+      <dt>Email</dt>
+      <dd> {{usuario.email}} </dd>
+      <dt>Perfil</dt>
+      <dd> {{usuario.role}} </dd>
+    </dl>
+
+  </div>
+</div>
+
+<pre>{{usuario | json}}</pre>

@@ -202,6 +202,5 @@ namespace LojaDropS.Servicos.Vendas.Tests.Controllers
                 () => error.ShouldNotBeNullOrEmpty(),
                 () => error.ShouldBe(DummyException));
         }
-
     }
 }

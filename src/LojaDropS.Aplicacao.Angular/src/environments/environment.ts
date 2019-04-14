@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  vendasEndpoint: 'https://localhost:8000/api'
+  vendasEndpoint: 'https://localhost:8000/api',
+  authority: 'https://localhost:5000'
 };
 
 /*

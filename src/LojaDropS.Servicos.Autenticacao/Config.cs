@@ -106,7 +106,6 @@ namespace LojaDropS.Servicos.Autenticacao
         {
             return new Client[]
             {
-
                 new Client
                 {
                     Enabled = true,
@@ -124,13 +123,36 @@ namespace LojaDropS.Servicos.Autenticacao
                         "email",
                         "roles"
                     },
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-                    ClientUri = "https://localhost:8000",
-                    RedirectUris = { "https://localhost:8000/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:8000/signout-callback-oidc" },
+                    AllowAccessTokensViaBrowser = true,
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientUri = "http://localhost:4200",
+                    RedirectUris = { "http://localhost:4200/#/login-callback?" },
+                    //RedirectUris = { "http://localhost:4200/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:4200/#/" },
+                    AllowedCorsOrigins =
+                    {
+                        "http://localhost:4200"
+                    },
                     RequireConsent = false
-                }
-
+                },
+                new Client
+                {
+                    ClientId = "apiClient",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
+                    ClientSecrets =
+                    {
+                        new Secret("123456".ToSha256())
+                    },
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AllowedScopes =
+                    {
+                        "api.vendas:full",
+                        "openid",
+                        "profile",
+                        "email",
+                    }
+                },
             };
         }
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { authConfig } from './authConfig';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'LojaDropSAplicacaoAngular';
 
-  isAuthenticated(): boolean {
-    return false;
+  constructor(private oauth: OAuthService){
+
   }
+
+  isAuthenticated(): boolean {
+    return this.oauth.hasValidIdToken();
+  }
+
+  logout(){
+    this.oauth.logOut(false);
+  }
+
+  
 }

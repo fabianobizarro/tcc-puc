@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@mdi/font": "^3.5.95",
+    "angular-oauth2-oidc": "^5.0.2",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "jQuery": "^1.7.4",

@@ -12,4 +12,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  get range(){
+    return Array(8);
+  }
+
 }

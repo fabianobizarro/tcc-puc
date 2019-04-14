@@ -23,78 +23,8 @@
 <h3 class="mt-4 mb-4">Destaques</h3>
 
 <div class="row mt-2">
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
-      <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome do Produto</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-        <a href="/" class="btn btn-link">R$ 100,00</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card border-light" style="width: 18rem;">
+  <div *ngFor="let r of range" class="col-md-3 mb-2">
+    <div class="card border-light">
       <img src="https://via.placeholder.com/250x150" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Nome do Produto</h5>
