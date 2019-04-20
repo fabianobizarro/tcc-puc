@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaDropS.Dominio;
 using LojaDropS.Infra.Interfaces;
 using LojaDropS.Servicos.Vendas.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LojaDropS.Servicos.Vendas.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AppPolicy")]
+    [Authorize("Fornecedor")]
+    [Route("api/[controller]")]
     public class ProdutosController : AppControllerBase
     {
         private readonly IProdutoStore _store;
@@ -64,8 +63,8 @@ namespace LojaDropS.Servicos.Vendas.Controllers
                         Descricao = model.Descricao,
                         CategoriaId = new Guid(model.CategoriaId),
                         FornecedorId = new Guid(model.FornecedorId),
-                        Valor = model.Valor,
-                        Caracteristicas = model?.Caracteristicas.Select(p => new Caracteristica
+                        Valor = model.Valor.Value,
+                        Caracteristicas = model?.Caracteristicas?.Select(p => new Caracteristica
                         {
                             Nome = p.Key,
                             Valor = p.Value,

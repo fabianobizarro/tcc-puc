@@ -16,34 +16,24 @@ namespace LojaDropS.Servicos.Vendas
         {
             return new List<Categoria>
             {
-                new Categoria("Categoria 1")
-                {
-                    SubCategorias = new List<SubCategoria>
-                    {
-                        new SubCategoria("SubCategoria 1"),
-                        new SubCategoria("SubCategoria 2"),
-                    }
-                },
-                new Categoria("Categoria 2")
-                {
-                    SubCategorias = new List<SubCategoria>
-                    {
-                        new SubCategoria("Subcategoria 3"),
-                        new SubCategoria("Subcategoria 4")
-                    }
-                }
+                new Categoria("Categoria 1"),
+                new Categoria("Categoria 2"),
+                new Categoria("Categoria 3"),
+                new Categoria("Categoria 4"),
+                new Categoria("Categoria 5"),
+                new Categoria("Categoria 6")
             };
         }
 
         public static List<Fornecedor> GetFornecedors()
         {
             var categoria1 = GetCategorias().First();
-            var categoria2 = GetCategorias().Skip(1).Take(1).First();
+            var categoria2 = GetCategorias()[1];
 
             var fornecedor1 = new Fornecedor("Fornecedor 1");
             fornecedor1.Produtos = Builder<Produto>.CreateListOfSize(20)
                                     .All()
-                                    .Do(p => p.Categoria = Random.Int() % 2 == 0 ? categoria1 : categoria2)
+                                    .Do(p => p.CategoriaId = Random.Int() % 2 == 0 ? categoria1.Id : categoria2.Id)
                                     .Do(p => p.UrlImagem = "https://via.placeholder.com/250x150")
                                     .Do(p => p.Caracteristicas = GetRandomCaracteristicas())
                                     .Build();
@@ -51,7 +41,7 @@ namespace LojaDropS.Servicos.Vendas
             var fornecedor2 = new Fornecedor("Fornecedor 2");
             fornecedor2.Produtos = Builder<Produto>.CreateListOfSize(15)
                                     .All()
-                                    .Do(p => p.Categoria = Random.Int() % 2 == 0 ? categoria1 : categoria2)
+                                    .Do(p => p.CategoriaId = Random.Int() % 2 == 0 ? categoria1.Id : categoria2.Id)
                                     .Do(p => p.Caracteristicas = GetRandomCaracteristicas())
                                     .Do(p => p.UrlImagem = "https://via.placeholder.com/250x150")
                                     .Build();
@@ -111,11 +101,11 @@ namespace LojaDropS.Servicos.Vendas
 
         public static void MoqDb(IAppDbContext context)
         {
-            
+
             context.Categorias.AddRange(GetCategorias());
+            context.SaveChanges();
 
             context.Fornecedores.AddRange(GetFornecedors());
-
             context.SaveChanges();
         }
     }

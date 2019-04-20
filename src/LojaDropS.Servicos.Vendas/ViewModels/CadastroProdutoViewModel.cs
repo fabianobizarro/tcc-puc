@@ -15,7 +15,7 @@ namespace LojaDropS.Servicos.Vendas.ViewModels
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatorio")]
-        public decimal Valor { get; set; }
+        public decimal? Valor { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatorio")]
         public string FornecedorId { get; set; }

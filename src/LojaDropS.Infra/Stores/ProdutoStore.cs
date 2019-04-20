@@ -21,7 +21,7 @@ namespace LojaDropS.Infra.Stores
 
         public IQueryable<Produto> Produtos => _db.Produtos
             .Include(p => p.Caracteristicas)
-            .Include(p => p.Categoria)
+            //.Include(p => p.Categoria)
             .Include(P => P.Fornecedor);
     }
 }

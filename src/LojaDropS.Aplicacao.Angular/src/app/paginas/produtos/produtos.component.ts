@@ -10,7 +10,7 @@ import { CategoriasService } from 'src/app/services/categorias.service';
 })
 export class ProdutosComponent implements OnInit {
 
-  pesquisa: string = 'nome';
+  pesquisa: string;
   listaProdutos: any[] = [];
   categorias: any[] = [];
   show: boolean = false;
@@ -24,7 +24,6 @@ export class ProdutosComponent implements OnInit {
 
   ngOnInit() {
     this.obterCategorias();
-    this.pesquisar();
   }
 
   toggleShowAccordion() {

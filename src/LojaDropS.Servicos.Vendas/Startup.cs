@@ -16,6 +16,9 @@ using Microsoft.EntityFrameworkCore;
 using LojaDropS.Infra.Interfaces;
 using LojaDropS.Infra.Stores;
 using LojaDropS.Infra;
+using Microsoft.IdentityModel.Logging;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace LojaDropS.Servicos.Vendas
 {
@@ -31,6 +34,8 @@ namespace LojaDropS.Servicos.Vendas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<AppDbContext>(options =>
@@ -44,6 +49,38 @@ namespace LojaDropS.Servicos.Vendas
             services.AddTransient<IProdutoStore, ProdutoStore>();
             services.AddTransient<ICategoriaStore, CategoriaStore>();
             services.AddTransient<IFornecedoreStore, FornecedorStore>();
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "https://localhost:5000";
+                    options.ApiName = "apiVendas";
+                    options.ApiSecret = "iTqp9@&9EQAbEv";
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    
+                    options.EnableCaching = true;
+                    options.CacheDuration = TimeSpan.FromDays(5);
+
+                });
+
+            services.AddTransient<IDistributedCache, MemoryDistributedCache>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                {
+                    policy.RequireRole("admin");
+                });
+
+                options.AddPolicy("Fornecedor", policy =>
+                {
+                    policy.RequireAssertion(a =>
+                    {
+                        return a.User.IsInRole("fornecedor") || a.User.IsInRole("admin");
+                    });
+                });
+            });
 
             services.AddCors(options =>
             {
@@ -70,6 +107,7 @@ namespace LojaDropS.Servicos.Vendas
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

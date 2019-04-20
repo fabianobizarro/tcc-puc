@@ -4,15 +4,17 @@ using System.Threading.Tasks;
 using LojaDropS.Dominio;
 using LojaDropS.Infra.Interfaces;
 using LojaDropS.Servicos.Vendas.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaDropS.Servicos.Vendas.Controllers
 {
-    [Route("api/[controller]")]
-    [EnableCors("AppPolicy")]
     [ApiController]
+    [Authorize("Admin")]
+    [EnableCors("AppPolicy")]
+    [Route("api/[controller]")]
     public class CategoriasController : AppControllerBase
     {
         private readonly ICategoriaStore _store;
@@ -23,6 +25,7 @@ namespace LojaDropS.Servicos.Vendas.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             var categorias = await _store.Categorias

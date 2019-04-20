@@ -48,6 +48,13 @@ namespace LojaDropS.Servicos.Autenticacao
                     Scopes =
                     {
                         new Scope("api.vendas:full")
+                        {
+                            UserClaims =
+                            {
+                                "role",
+                                "name"
+                            }
+                        },
                     },
                 }
             };
